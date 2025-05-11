@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+ 
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
-<body>
+<body> 
+    <button id="themeToggle"  type="button"
+    data-theme-toggle>
+    <i class="fas fa-moon"></i>
+      </button>
+      
     <h1>Todo</h1>
     <div class="wrapper"  ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)">
+      
         <form>
             <input id="todo-input" type="text" 
             placeholder="write anything and hit enter to add" autocomplete="off">

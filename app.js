@@ -42,6 +42,7 @@ function createTodoItem(todo, todoIndex) {
     todoLI.addEventListener("dragstart", dragstartHandler);
     todoLI.addEventListener("dragover", dragoverHandler);
     todoLI.addEventListener("drop", dropHandler);
+    todoLI.addEventListener("dragend", dragendHandler);
 
     const input = document.createElement("input");
     input.type = "checkbox";
@@ -87,6 +88,7 @@ function getTodos() {
     return JSON.parse(localStorage.getItem("todos") || "[]");
 }
 
+// --- Drag and Drop Logic ---
 let draggedItem = null;
 
 function dragstartHandler(event) {
@@ -98,22 +100,84 @@ function dragoverHandler(event) {
     event.preventDefault();
     const target = event.target.closest("li");
     if (target && target !== draggedItem) {
-        target.style.borderTop = "2px solid #f9bd08";  // Визуальное выделение
+        // Подсветка элемента, на который перетаскиваем
+        const listItems = Array.from(todoListUL.children);
+        listItems.forEach(item => item.style.borderTop = ""); // Убираем старую подсветку
+        target.style.borderTop = "2px solid var(--accent-color)"; // Подсвечиваем цель
     }
 }
 
 function dropHandler(event) {
     event.preventDefault();
+
     const targetItem = event.target.closest("li");
     if (!draggedItem || !targetItem || draggedItem === targetItem) return;
 
-    const draggedIndex = Number(draggedItem.dataset.index);
-    const targetIndex = Number(targetItem.dataset.index);
+    const listItems = Array.from(todoListUL.children);
+    const draggedIdx = listItems.indexOf(draggedItem); // Индекс перетаскиваемого элемента
+    const targetIdx = listItems.indexOf(targetItem); // Индекс целевого элемента
 
-    // Удаляем перетаскиваемый элемент и вставляем его в нужную позицию
-    const movedItem = allTodos.splice(draggedIndex, 1)[0];
-    allTodos.splice(targetIndex, 0, movedItem);
+    // Перемещаем элемент в новый индекс
+    const movedItem = allTodos.splice(draggedIdx, 1)[0];
+    allTodos.splice(targetIdx, 0, movedItem);
 
     saveTodos();
     updateTodoList();
 }
+
+function dragendHandler(event) {
+    const listItems = todoListUL.querySelectorAll("li");
+    listItems.forEach(item => {
+        item.style.borderTop = ""; // Убираем визуальную подсветку
+    });
+    draggedItem = null;
+}
+
+// --- Theme Toggle ---
+function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+    if (localStorageTheme !== null) {
+        return localStorageTheme;
+    }
+
+    if (systemSettingDark.matches) {
+        return "dark";
+    }
+
+    return "light";
+}
+
+function updateButton({ buttonEl, isDark }) {
+    const iconEl = buttonEl.querySelector('i');
+    if (!iconEl) return;
+
+    if (isDark) {
+        iconEl.className = "fas fa-sun";
+        buttonEl.setAttribute("aria-label", "Change to light theme");
+    } else {
+        iconEl.className = "fas fa-moon";
+        buttonEl.setAttribute("aria-label", "Change to dark theme");
+    }
+}
+
+function updateThemeOnHtmlEl({ theme }) {
+    document.querySelector("html").setAttribute("data-theme", theme);
+}
+
+const button = document.querySelector("[data-theme-toggle]");
+const localStorageTheme = localStorage.getItem("theme");
+const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
+
+updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
+updateThemeOnHtmlEl({ theme: currentThemeSetting });
+
+button.addEventListener("click", (event) => {
+    const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+
+    localStorage.setItem("theme", newTheme);
+    updateButton({ buttonEl: button, isDark: newTheme === "dark" });
+    updateThemeOnHtmlEl({ theme: newTheme });
+
+    currentThemeSetting = newTheme;
+});
