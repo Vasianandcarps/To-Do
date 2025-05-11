@@ -1,10 +1,23 @@
 :root{
-    --background: #080808;
+    
+  
+    --accent-color: #f9bd08;
+}
+
+[data-theme="light"] {
+    --background: #ffffff;
+    --text-color: #000000;
+    --primary-color: #f8f8f8;
+    --secondary-color: #ececec;
+  }
+  
+  [data-theme="dark"] {
+    --background: #000000;
+    --text-color: #ffffff;
     --primary-color: #1C1D20;
     --secondary-color: #303032;
-    --accent-color: #f9bd08;
-    --text-color: #F9F9F9;
-}
+  }
+
 *{
     margin: 0;
     padding: 0;
@@ -146,4 +159,18 @@ input[type="checkbox"]{
   }
   [draggable=false] {
     cursor: not-allowed;
+  }
+
+  button {
+    font-size: 2rem;
+    font-weight: bold;
+   
+    transition: all var(--global-transition-time) ease-in-out;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--background);
+    
+
+   
   }
