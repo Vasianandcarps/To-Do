@@ -1,18 +1,12 @@
 {
   "compilerOptions": {
-    "rootDir": "./",         // Change this from "./src" to "./"
-    "outDir": "./dist",
-    "types": ["jest", "node"],
-    
-    // Keep your other settings...
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Bundler", 
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "strict": true,
+    "moduleResolution": "Node",
+    "types": ["node"], // Залиште тільки node (або порожній масив, якщо не використовуєте node API у браузері)
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
-  "include": ["src/**/*", "test/**/*"], // Include BOTH folders
-  "exclude": [] 
+  "include": ["src/**/*"]
 }

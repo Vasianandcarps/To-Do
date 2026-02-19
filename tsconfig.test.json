@@ -5,10 +5,8 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "verbatimModuleSyntax": false, 
-    "skipLibCheck": true,
-    "types": ["jest", "node"],
-    "rootDir": "./",
-    "allowJs": true
+    "types": ["jest", "node"], // Тут типи потрібні
+    "rootDir": "./"
   },
   "include": ["src/**/*", "test/**/*"]
 }
