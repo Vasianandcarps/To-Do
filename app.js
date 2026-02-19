@@ -100,10 +100,10 @@ function dragoverHandler(event) {
     event.preventDefault();
     const target = event.target.closest("li");
     if (target && target !== draggedItem) {
-        // Подсветка элемента, на который перетаскиваем
+       
         const listItems = Array.from(todoListUL.children);
-        listItems.forEach(item => item.style.borderTop = ""); // Убираем старую подсветку
-        target.style.borderTop = "2px solid var(--accent-color)"; // Подсвечиваем цель
+        listItems.forEach(item => item.style.borderTop = "");
+        target.style.borderTop = "2px solid var(--accent-color)"; 
     }
 }
 
@@ -114,10 +114,10 @@ function dropHandler(event) {
     if (!draggedItem || !targetItem || draggedItem === targetItem) return;
 
     const listItems = Array.from(todoListUL.children);
-    const draggedIdx = listItems.indexOf(draggedItem); // Индекс перетаскиваемого элемента
-    const targetIdx = listItems.indexOf(targetItem); // Индекс целевого элемента
+    const draggedIdx = listItems.indexOf(draggedItem);
+    const targetIdx = listItems.indexOf(targetItem); 
 
-    // Перемещаем элемент в новый индекс
+  
     const movedItem = allTodos.splice(draggedIdx, 1)[0];
     allTodos.splice(targetIdx, 0, movedItem);
 
@@ -128,7 +128,7 @@ function dropHandler(event) {
 function dragendHandler(event) {
     const listItems = todoListUL.querySelectorAll("li");
     listItems.forEach(item => {
-        item.style.borderTop = ""; // Убираем визуальную подсветку
+        item.style.borderTop = ""; 
     });
     draggedItem = null;
 }
