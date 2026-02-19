@@ -9,7 +9,7 @@ dist/
 .idea/
 .DS_Store
 ./node_modules/
-
+/node_modules
 # --- Source Maps ---
 # If you don't want to share source maps in your repo
 *.js.map
