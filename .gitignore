@@ -1,0 +1,23 @@
+# --- Compilaton Output ---
+# Ignore the folder where TypeScript sends the compiled JavaScript
+dist/
+
+# --- TypeScript / IDE ---
+# Ignore the build info and cache files
+*.tsbuildinfo
+.vscode/
+.idea/
+.DS_Store
+
+# --- Source Maps ---
+# If you don't want to share source maps in your repo
+*.js.map
+
+# --- Secrets ---
+# Just in case you add environment variables later
+.env
+.env.local
+
+# --- (Optional) Logs ---
+# Even if you aren't using Node, sometimes local tools create logs
+*.log
