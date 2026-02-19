@@ -1,4 +1,4 @@
-import type { Todo } from "./types";
+import type { Todo } from "./types.js";
 
 export let allTodos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 

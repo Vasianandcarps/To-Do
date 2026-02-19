@@ -1,4 +1,4 @@
-import { allTodos, saveTodos } from "../state";
+import { allTodos, saveTodos } from "../state.js";
 
 export function addTodo(inputEl: HTMLInputElement, onSuccess: () => void): void {
     const text = inputEl.value.trim();

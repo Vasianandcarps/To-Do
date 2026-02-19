@@ -1,4 +1,4 @@
-import { allTodos, saveTodos } from "../state";
+import { allTodos, saveTodos } from "../state.js";
 
 let draggedItem: HTMLElement | null = null;
 

@@ -1,6 +1,6 @@
-import { allTodos, saveTodos } from "./state";
-import { addTodo, deleteTodoItem } from "./func/todoActions";
-import { dragHandlers } from "./func/dragAndDrop";
+import { allTodos, saveTodos } from "./state.js";
+import { addTodo, deleteTodoItem } from "./func/todoActions.js";
+import { dragHandlers } from "./func/dragAndDrop.js";
 
 
 const todoForm = document.querySelector('form')!;

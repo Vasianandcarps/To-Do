@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": false, 
+    "skipLibCheck": true,
+    "types": ["jest", "node"],
+    "rootDir": "./",
+    "allowJs": true
+  },
+  "include": ["src/**/*", "test/**/*"]
+}

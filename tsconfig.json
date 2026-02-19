@@ -1,28 +1,18 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./",         // Change this from "./src" to "./"
     "outDir": "./dist",
-
-    /* Change these three for Browser-only mode */
+    "types": ["jest", "node"],
+    
+    // Keep your other settings...
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler", 
-    
-    /* Add these to support Browser APIs */
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": [], 
-
-    /* Your existing strict preferences */
     "strict": true,
     "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "moduleDetection": "force"
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "test/**/*"], // Include BOTH folders
+  "exclude": [] 
 }
